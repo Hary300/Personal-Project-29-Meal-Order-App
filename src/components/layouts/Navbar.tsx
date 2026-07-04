@@ -4,6 +4,7 @@ import Image from 'next/image';
 import avatar from '@/assets/icons/avatar-icon.svg';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { authStorage } from '@/helper/authStorage';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -24,6 +25,9 @@ const Navbar = () => {
   const isHomePage = pathname === '/';
 
   const useLightNavbar = !isHomePage || isScrolled;
+
+  const token = authStorage.getToken();
+  console.log(token);
 
   return (
     <div
