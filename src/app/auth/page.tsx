@@ -1,0 +1,32 @@
+import authImage from '@/assets/images/auth-image.png';
+import Logo from '@/components/shared/Logo';
+import AuthTabs from '@/features/auth/components/AuthTabs';
+import Image from 'next/image';
+
+const AuthPage = () => {
+  return (
+    <div className='flex'>
+      <div className='hidden lg:block lg:w-1/2 h-screen overflow-hidden'>
+        <Image
+          src={authImage}
+          alt='burger on the tray'
+          className='size-full object-cover object-bottom'
+        />
+      </div>
+      <div className='flex justify-center items-center lg:w-1/2 px-3xl py-8 min-h-screen w-full'>
+        <div className='flex flex-col gap-xl lg:gap-2xl w-full max-w-93.5'>
+          <Logo />
+          <p className='font-extrabold text-display-xs lg:text-display-sm'>
+            Welcome Back
+          </p>
+          <p className='font-medium text-sm lg:text-md'>
+            Good to see you again! Let’s eat
+          </p>
+          <AuthTabs />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AuthPage;
