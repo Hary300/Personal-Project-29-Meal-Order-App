@@ -1,18 +1,24 @@
 import { useRecommendedRestaurant } from '@/features/restaurant/hook/useRecommendedRestaurant';
-import { pressable } from '@/motions';
 import { Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 
 const RecommendedSection = () => {
-  const { data: recommendedResponse } = useRecommendedRestaurant();
-  console.log(recommendedResponse);
+  const {
+    data: recommendedResponse,
+    isLoading,
+    error,
+  } = useRecommendedRestaurant();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+
   const recommendedRestaurants = recommendedResponse?.data.recommendations;
 
   return (
     <section
       id='home-recommendation'
-      className='flex flex-col gap-7 lg:gap-8 px-4 lg:px-30'
+      className='flex flex-col gap-7 lg:gap-8 px-4 lg:px-30 pb-26'
     >
       <h2 className='font-extrabold text-display-xs lg:text-display-md '>
         Recommended

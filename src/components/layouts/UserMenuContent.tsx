@@ -34,10 +34,15 @@ const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='flex flex-col gap-3 p-4'>
-        <div className='flex items-center gap-4 cursor-pointer'>
-          <Image src={avatar} alt='avatar' loading='eager' />
-          <p className={`font-bold leading-md text-md`}>{user?.name}</p>
-        </div>
+        <DropdownMenuItem>
+          <div
+            className='flex items-center gap-4 cursor-pointer'
+            onClick={() => router.push('/profile')}
+          >
+            <Image src={avatar} alt='avatar' loading='eager' />
+            <p className={`font-bold leading-md text-md`}>{user?.name}</p>
+          </div>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <svg

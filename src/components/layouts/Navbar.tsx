@@ -42,7 +42,7 @@ const Navbar = () => {
   };
 
   return (
-    <div
+    <header
       className={`sticky top-0 px-4 lg:px-30 h-[64px] lg:h-20 flex justify-between w-full  z-20 ${useLightNavbar ? 'bg-white' : 'bg-transparent'}`}
     >
       <Logo useLightNavbar={useLightNavbar} />
@@ -86,7 +86,7 @@ const Navbar = () => {
           </Button>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 

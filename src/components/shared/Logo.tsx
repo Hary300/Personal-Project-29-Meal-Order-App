@@ -1,12 +1,24 @@
+'use client';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
-const Logo = ({ useLightNavbar }: { useLightNavbar?: boolean }) => {
+const Logo = ({
+  useLightNavbar,
+  textColor,
+  isFooter,
+}: {
+  useLightNavbar?: boolean;
+  textColor?: string;
+  isFooter?: boolean;
+}) => {
+  const router = useRouter();
   return (
     <div
       className={cn(
-        'flex items-center gap-[11.43px] lg:gap-3.75',
+        'flex items-center gap-[11.43px] lg:gap-3.75 cursor-pointer',
         useLightNavbar ? '' : 'text-white'
       )}
+      onClick={() => router.push('/')}
     >
       <svg
         viewBox='0 0 42 42'
@@ -42,7 +54,13 @@ const Logo = ({ useLightNavbar }: { useLightNavbar?: boolean }) => {
         </defs>
       </svg>
 
-      <span className='font-extrabold text-[24.38px] lg:text-display-md leading-display-md hidden md:block'>
+      <span
+        className={cn(
+          'font-extrabold text-[24.38px] lg:text-display-md leading-display-md md:block',
+          isFooter ? '' : 'hidden',
+          textColor
+        )}
+      >
         Food
       </span>
     </div>
