@@ -22,7 +22,9 @@ const ProfileSideBar = ({
     toast.success('Logout successfully');
   };
   return (
-    <div
+    <section
+      id='profile-sidebar
+    '
       className={cn(
         'rounded-2xl bg-white p-5 flex-col gap-6 shadow-[0_0_20px_0_#CBCACA40] w-full max-w-60 hidden md:flex',
         className
@@ -101,7 +103,7 @@ const ProfileSideBar = ({
         </svg>
         <span className='font-medium text-sm '>Log out</span>
       </div>
-    </div>
+    </section>
   );
 };
 

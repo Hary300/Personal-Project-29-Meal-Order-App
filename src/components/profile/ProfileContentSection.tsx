@@ -23,7 +23,10 @@ const ProfileContent = ({ profileData }: { profileData: Profile }) => {
   ];
 
   return (
-    <div className='flex flex-col gap-4 lg:gap-6 w-full'>
+    <section
+      id='profile-content'
+      className='flex flex-col gap-4 lg:gap-6 w-full'
+    >
       <h1 className='font-extrabold text-display-xs lg:text-display-md'>
         Profile
       </h1>
@@ -45,7 +48,7 @@ const ProfileContent = ({ profileData }: { profileData: Profile }) => {
 
         <Button>Update Profile</Button>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 'use client';
-import ProfileContent from '@/components/profile/ProfileContent';
-import ProfileSideBar from '@/components/profile/ProfileSideBar';
+import ProfileContent from '@/components/profile/ProfileContentSection';
+import ProfileSideBar from '@/components/profile/ProfileSideBarSection';
 import { useProfile } from '@/features/profile/hook/useProfile';
 
 const ProfilePage = () => {
