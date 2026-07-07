@@ -1,5 +1,10 @@
 import { api } from '@/lib/api/axios';
-import { RecommendedRestaurantData, RestaurantDetail } from '../types';
+import {
+  GetRestaurantsParams,
+  RecommendedRestaurantData,
+  RestaurantDetail,
+  RestaurantListData,
+} from '../types';
 import { ApiResponse } from '@/types/api.type';
 
 export const getRecommendedRestaurant = async () => {
@@ -12,5 +17,12 @@ export const getRestaurantDetail = async (restaurantId: number) => {
   const { data } = await api.get<ApiResponse<RestaurantDetail>>(
     `/resto/${restaurantId}?limitMenu=10&limitReview=6`
   );
+  return data;
+};
+
+export const getRestaurantList = async (params: GetRestaurantsParams) => {
+  const { data } = await api.get<ApiResponse<RestaurantListData>>('/resto', {
+    params,
+  });
   return data;
 };

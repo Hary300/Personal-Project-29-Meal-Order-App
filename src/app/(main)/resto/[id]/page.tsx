@@ -29,7 +29,7 @@ const RestaurantDetailPage = () => {
       <DetailHeroCarousel images={restaurantDetail.images} />
       <DetailHeroSection restaurantDetail={restaurantDetail} />
       <div className='h-0.5 w-full bg-neutral-300' />
-      <MenuSection menus={restaurantDetail.menus} />
+      <MenuSection restaurantDetail={restaurantDetail} />
       <div className='h-0.5 w-full bg-neutral-300' />
       <ReviewSection reviews={restaurantDetail.reviews} />
     </div>

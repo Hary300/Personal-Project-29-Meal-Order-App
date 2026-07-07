@@ -2,7 +2,7 @@
 import ProfileContent from '@/components/profile/ProfileContentSection';
 import ProfileSideBar from '@/components/profile/ProfileSideBarSection';
 import { useProfile } from '@/features/profile/hook/useProfile';
-import { authStore } from '@/store/auth-store';
+import { authStore } from '@/features/auth/store/auth-store';
 import { useRouter } from 'next/navigation';
 
 const ProfilePage = () => {

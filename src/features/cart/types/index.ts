@@ -10,7 +10,7 @@ export type AddToCartPayload = {
 };
 
 export type UpdateCartItemPayload = {
-  cartId: number;
+  cartItemId: number;
   quantity: number;
 };
 

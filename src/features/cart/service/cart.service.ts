@@ -3,7 +3,8 @@ import { AddToCartPayload, CartData, UpdateCartItemPayload } from '../types';
 import { ApiResponse } from '@/types/api.type';
 
 export const addItemCart = async (payload: AddToCartPayload) => {
-  await api.post('/cart', payload);
+  const { data } = await api.post('/cart', payload);
+  return data;
 };
 
 export const getItemsCart = async () => {
@@ -12,16 +13,19 @@ export const getItemsCart = async () => {
 };
 
 export const updateItemCart = async ({
-  cartId,
+  cartItemId,
   quantity,
 }: UpdateCartItemPayload) => {
-  await api.patch(`/cart/${cartId}`, quantity);
+  const { data } = await api.put(`/cart/${cartItemId}`, { quantity });
+  return data;
 };
 
 export const deleteAllItemsCart = async () => {
-  await api.delete('/cart');
+  const { data } = await api.delete('/cart');
+  return data;
 };
 
-export const deleteOneItemCart = async (cartId: number) => {
-  await api.delete(`/cart/${cartId}`);
+export const deleteOneItemCart = async (cartItemId: number) => {
+  const { data } = await api.delete(`/cart/${cartItemId}`);
+  return data;
 };

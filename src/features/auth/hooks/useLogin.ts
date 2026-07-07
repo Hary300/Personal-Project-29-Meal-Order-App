@@ -1,8 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { login, LoginPayload } from '../service/auth.service';
 import { toast } from 'sonner';
-import { authStore } from '@/store/auth-store';
-import axios from 'axios';
+import { authStore } from '@/features/auth/store/auth-store';
 
 export const useLogin = () => {
   return useMutation({

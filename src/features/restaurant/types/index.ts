@@ -29,6 +29,60 @@ export type Review = {
   user: ReviewUser;
 };
 
+export type PriceRange = {
+  min: number;
+  max: number;
+};
+
+/**=============
+ * List Restaurants 
+ ===============*/
+
+export type GetRestaurantsParams = {
+  location?: string;
+  range?: number;
+  priceMin?: number;
+  priceMax?: number;
+  rating?: number;
+  category?: number;
+  page?: number;
+  limit?: number;
+};
+
+export type RestaurantListItem = {
+  id: number;
+  name: string;
+  star: number;
+  place: string;
+  logo: string;
+  images: string[];
+  category: string;
+  reviewCount: number;
+  menuCount: number;
+  priceRange: PriceRange;
+};
+
+export type Pagination = {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+};
+
+export type RestaurantFilters = {
+  range: number | null;
+  priceMin: number | null;
+  priceMax: number | null;
+  rating: number | null;
+  category: string | null;
+};
+
+export type RestaurantListData = {
+  restaurants: RestaurantListItem[];
+  pagination: Pagination;
+  filters: RestaurantFilters;
+};
+
 /**=============
  * Recommended
  ===============*/

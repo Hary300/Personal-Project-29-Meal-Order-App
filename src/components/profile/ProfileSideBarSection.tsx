@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import avatar from '@/assets/icons/avatar-icon.svg';
 import { cn } from '@/lib/utils';
-import { authStore } from '@/store/auth-store';
+import { authStore } from '@/features/auth/store/auth-store';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 

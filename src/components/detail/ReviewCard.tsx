@@ -12,7 +12,13 @@ const ReviewCard = ({ review }: { review: Review }) => {
       <div className='flex gap-4'>
         <div className='relative w-14.5 h-14.5'>
           {avatar ? (
-            <Image src={avatar} alt={review.user.name} fill />
+            <Image
+              src={avatar}
+              alt={review.user.name}
+              fill
+              sizes='58px'
+              className='object-cover'
+            />
           ) : (
             <div className='flex justify-center items-center border rounded-full size-14.5'>
               <ImageOff className='text-neutral-500' />

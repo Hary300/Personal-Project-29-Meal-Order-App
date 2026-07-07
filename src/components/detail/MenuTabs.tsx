@@ -1,9 +1,14 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import AllMenu from './MenuGrid';
-import { Menu } from '@/features/restaurant/types';
+import { RestaurantDetail } from '@/features/restaurant/types';
 import MenuGrid from './MenuGrid';
 
-const MenuTabs = ({ menus }: { menus: Menu[] }) => {
+const MenuTabs = ({
+  restaurantDetail,
+}: {
+  restaurantDetail: RestaurantDetail;
+}) => {
+  const restaurantId = restaurantDetail.id;
+  const menus = restaurantDetail.menus;
   const foods = menus.filter((menu) => menu.type === 'food');
   const drinks = menus.filter((menu) => menu.type === 'drink');
   return (
@@ -29,13 +34,13 @@ const MenuTabs = ({ menus }: { menus: Menu[] }) => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value='all-menu'>
-        <MenuGrid menus={menus} />
+        <MenuGrid restaurantId={restaurantId} menus={menus} />
       </TabsContent>
       <TabsContent value='food'>
-        <MenuGrid menus={foods} />
+        <MenuGrid restaurantId={restaurantId} menus={foods} />
       </TabsContent>
       <TabsContent value='drink'>
-        <MenuGrid menus={drinks} />
+        <MenuGrid restaurantId={restaurantId} menus={drinks} />
       </TabsContent>
     </Tabs>
   );

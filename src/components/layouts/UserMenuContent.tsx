@@ -9,7 +9,7 @@ import Image from 'next/image';
 import avatar from '@/assets/icons/avatar-icon.svg';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { authStore } from '@/store/auth-store';
+import { authStore } from '@/features/auth/store/auth-store';
 
 const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
   const user = authStore((state) => state.user);

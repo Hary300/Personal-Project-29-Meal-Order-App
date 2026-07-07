@@ -1,8 +1,17 @@
 import { Menu } from '@/features/restaurant/types';
 import Image from 'next/image';
 import { Button } from '../ui/button';
+import AddItemToCart from '../cart/AddItemToCart';
+import { useGetItemsCart } from '@/features/cart/hook/useCart';
+import { CartItem } from '@/features/cart/types';
 
-const MenuCard = ({ menu }: { menu: Menu }) => {
+type MenuCardProps = {
+  restaurantId: number;
+  menu: Menu;
+  cartItem?: CartItem;
+};
+
+const MenuCard = ({ restaurantId, menu, cartItem }: MenuCardProps) => {
   return (
     <div className='flex flex-col rounded-2xl gap-3 lg:gap-4 overflow-hidden pb-3 lg:pb-4 shadow-[0_0_20px_0_#CBCACA40]'>
       <div className='relative h-43 lg:h-71.25'>
@@ -22,12 +31,14 @@ const MenuCard = ({ menu }: { menu: Menu }) => {
             {menu.foodName}
           </p>
           <p className='font-extrabold text-md lg:text-lg leading-md'>
-            Rp {menu.price}
+            Rp {menu.price.toLocaleString('id-ID')}
           </p>
         </div>
-        <div className='w-full lg:max-w-19.75'>
-          <Button>Add</Button>
-        </div>
+        <AddItemToCart
+          restaurantId={restaurantId}
+          menuId={menu.id}
+          cartItem={cartItem}
+        />
       </div>
     </div>
   );
