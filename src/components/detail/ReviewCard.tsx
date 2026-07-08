@@ -1,5 +1,5 @@
 import { Review } from '@/features/restaurant/types';
-import { formatDate } from '@/helper/formateDate';
+import { formatDate } from '@/lib/helper/formateDate';
 import { ImageOff, Star } from 'lucide-react';
 import Image from 'next/image';
 

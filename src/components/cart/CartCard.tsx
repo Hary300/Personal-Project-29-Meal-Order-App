@@ -7,13 +7,22 @@ import DecIncButton from './DecIncButton';
 import { useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 
-const CartCard = ({ cartRestaurant }: { cartRestaurant: Cart }) => {
+type CartCardProps = {
+  cartRestaurant: Cart;
+  isCart?: boolean;
+};
+
+const CartCard = ({ cartRestaurant, isCart }: CartCardProps) => {
   const cartItems = cartRestaurant.items;
 
   const router = useRouter();
 
   const handleRestaurantClick = (restaurantId: number) => {
     router.push(`/resto/${restaurantId}`);
+  };
+
+  const handleCheckoutClick = () => {
+    router.push('/checkout');
   };
   return (
     <div className='flex flex-col gap-3 lg:gap-5 rounded-2xl p-4 lg:p-5 shadow-[0_0_20px_0_#CBCACA40]'>
@@ -57,18 +66,22 @@ const CartCard = ({ cartRestaurant }: { cartRestaurant: Cart }) => {
         </div>
       ))}
 
-      <div className='w-full border-t-2 border-dashed border-gray-400' />
-      <div className='flex flex-col lg:flex-row lg:justify-between gap-4'>
-        <div className='flex flex-col'>
-          <p className='font-medium text-sm lg:text-md'>Total</p>
-          <p className='font-extrabold text-lg lg:text-xl'>
-            Rp{cartRestaurant.subtotal.toLocaleString('id-ID')}
-          </p>
-        </div>
-        <div className='w-full lg:max-w-60'>
-          <Button>Checkout</Button>
-        </div>
-      </div>
+      {isCart && (
+        <>
+          <div className='w-full border-t-2 border-dashed border-gray-400' />
+          <div className='flex flex-col lg:flex-row lg:justify-between gap-4'>
+            <div className='flex flex-col'>
+              <p className='font-medium text-sm lg:text-md'>Total</p>
+              <p className='font-extrabold text-lg lg:text-xl'>
+                Rp{cartRestaurant.subtotal.toLocaleString('id-ID')}
+              </p>
+            </div>
+            <div className='w-full lg:max-w-60'>
+              <Button onClick={handleCheckoutClick}>Checkout</Button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

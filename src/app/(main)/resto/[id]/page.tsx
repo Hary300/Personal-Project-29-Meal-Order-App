@@ -4,6 +4,7 @@ import DetailHeroSection from '@/components/detail/DetailHeroSection';
 import MenuSection from '@/components/detail/MenuSection';
 import ReviewSection from '@/components/detail/ReviewSection';
 import { useRestaurantDetail } from '@/features/restaurant/hook/useRestaurantDetail';
+import Loading from '@/loading/Loading';
 import { useParams } from 'next/navigation';
 
 const RestaurantDetailPage = () => {
@@ -15,7 +16,7 @@ const RestaurantDetailPage = () => {
     error,
   } = useRestaurantDetail(Number(id));
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (error) return <p>{error.message}</p>;
   if (!detailResponse) {
     console.log('No data');

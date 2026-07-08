@@ -47,13 +47,16 @@ const Navbar = () => {
     router.push('/cart');
   };
 
-  const totalItems = cartResponse?.data.summary.totalItems;
+  const totalItems = cartResponse?.data.summary.totalItems ?? 0;
 
   return (
     <header
       className={`sticky top-0 px-4 lg:px-30 h-[64px] lg:h-20 flex justify-between w-full  z-20 ${useLightNavbar ? 'bg-white' : 'bg-transparent'}`}
     >
-      <Logo useLightNavbar={useLightNavbar} />
+      <Logo
+        logoColor={useLightNavbar ? 'red' : 'white'}
+        textColor={useLightNavbar ? 'dark' : 'light'}
+      />
       {token ? (
         <div className='flex gap-4 items-center'>
           <div className='relative'>
@@ -79,8 +82,8 @@ const Navbar = () => {
                 fill='currentColor'
               />
             </svg>
-            {totalItems && totalItems !== 0 && (
-              <div className='absolute -top-1 right-[-6px] w-5 h-5 flex justify-center items-center rounded-full bg-primary-100 pointer-events-none'>
+            {totalItems > 0 && (
+              <div className='absolute -top-1 -right-1.5 w-5 h-5 flex justify-center items-center rounded-full bg-primary-100 pointer-events-none'>
                 <p className='text-xs font-bold text-white'>{totalItems}</p>
               </div>
             )}

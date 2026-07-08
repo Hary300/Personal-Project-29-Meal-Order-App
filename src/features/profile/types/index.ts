@@ -4,7 +4,7 @@ export type UpdateProfilePayload = {
   phone?: string;
 };
 
-export type Profile = {
+export type ProfileData = {
   id: number;
   name: string;
   email: string;
@@ -14,10 +14,4 @@ export type Profile = {
   longitude: number | null;
   createdAt: string;
   updatedAt: string;
-};
-
-export type ProfileResponse = {
-  success: boolean;
-  message: string;
-  data: Profile;
 };

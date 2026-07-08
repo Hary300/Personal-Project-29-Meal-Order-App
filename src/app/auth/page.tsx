@@ -27,7 +27,7 @@ const AuthPage = () => {
       </div>
       <div className='flex justify-center items-center lg:w-1/2 px-3xl py-8 min-h-screen w-full'>
         <div className='flex flex-col gap-xl lg:gap-2xl w-full max-w-93.5'>
-          <Logo />
+          <Logo logoColor='red' stayVisibleText={true} textColor='dark' />
           <p className='font-extrabold text-display-xs lg:text-display-sm'>
             Welcome Back
           </p>

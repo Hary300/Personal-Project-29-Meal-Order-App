@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className='grid grid-cols-2 lg:grid-cols-[auto_1fr] border-t w-full px-4 py-10 bg-neutral-950 lg:px-30 lg:py-20 text-neutral-25 gap-6 lg:gap-50'>
       <div className='flex flex-col gap-4 lg:gap-10 w-full lg:max-w-95 col-span-2 md:col-span-1'>
         <div className='flex flex-col gap-5.5'>
-          <Logo useLightNavbar textColor='text-white' isFooter />
+          <Logo logoColor='red' textColor='light' stayVisibleText />
           <p className='text-sm leading-sm lg:text-md lg:leading-md'>
             Enjoy homemade flavors & chef’s signature dishes, freshly prepared
             every day. Order online or visit our nearest branch.
