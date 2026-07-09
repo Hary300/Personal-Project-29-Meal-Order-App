@@ -5,7 +5,6 @@ type MyOrderListProps = {
   orderData: Order[];
 };
 const MyOrderList = ({ orderData }: MyOrderListProps) => {
-  console.log(orderData);
   return (
     <div className='flex flex-col gap-5'>
       {orderData.map((order) => (

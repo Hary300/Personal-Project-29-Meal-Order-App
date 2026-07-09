@@ -14,9 +14,15 @@ const MenuTabs = ({
   return (
     <Tabs defaultValue='all-menu' className='flex flex-col gap-4 lg:gap-6'>
       <TabsList className='flex gap-2 bg-transparent'>
-        <TabsTrigger value='all-menu'>All Menu</TabsTrigger>
-        <TabsTrigger value='food'>Food</TabsTrigger>
-        <TabsTrigger value='drink'>Drink</TabsTrigger>
+        <TabsTrigger value='all-menu' variant='red'>
+          All Menu
+        </TabsTrigger>
+        <TabsTrigger value='food' variant='red'>
+          Food
+        </TabsTrigger>
+        <TabsTrigger value='drink' variant='red'>
+          Drink
+        </TabsTrigger>
       </TabsList>
       <TabsContent value='all-menu'>
         <MenuGrid restaurantId={restaurantId} menus={menus} />
