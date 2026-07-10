@@ -6,13 +6,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { authStore } from '@/features/auth/store/auth-store';
 import Link from 'next/link';
 import { useProfile } from '@/features/profile/hook/useProfile';
-import { ImageOff } from 'lucide-react';
 import Avatar from '../shared/Avatar';
 
 const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {

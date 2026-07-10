@@ -18,7 +18,6 @@ import {
 import { useForm } from 'react-hook-form';
 import { UpdateProfileBody } from '@/features/profile/types';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 
 const UpdateProfile = () => {
   const [open, setOpen] = useState(false);
