@@ -1,3 +1,4 @@
+'use client';
 import { useRecommendedRestaurant } from '@/features/restaurant/hook/useRecommendedRestaurant';
 import RestaurantCard from '../shared/RestaurantCard';
 import SeeAll from './SeeAll';
