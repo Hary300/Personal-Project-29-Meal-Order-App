@@ -127,3 +127,12 @@ export type RestaurantDetail = {
   menus: Menu[];
   reviews: Review[];
 };
+
+/**=============
+ * Search Restaurant
+ ===============*/
+export type SearchRestaurantParams = {
+  q: string;
+  page?: number;
+  limit?: number;
+};

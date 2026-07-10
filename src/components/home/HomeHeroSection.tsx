@@ -2,16 +2,19 @@
 import heroImage from '@/assets/images/hero-image.png';
 import { Search } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 type SearchForm = {
   search: string;
 };
 const HomeHeroSection = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<SearchForm>();
 
-  const onSubmit = (data: SearchForm) => {
-    console.log(data);
+  const onSubmit = (query: SearchForm) => {
+    console.log(query);
+    router.push(`/search?q=${query.search}`);
   };
 
   return (
@@ -43,7 +46,7 @@ const HomeHeroSection = () => {
           <input
             type='text'
             {...register('search')}
-            placeholder='Search restaurants, food and drink'
+            placeholder="Type the restaurants' name"
             className='w-full rounded-full py-2 px-4 bg-white placeholder:text-neutral-600 placeholder:text-sm lg:placeholder:text-md pl-12.5 outline-0 focus:placeholder:opacity-0'
           />
           <Search className='size-5 absolute top-1/2 -translate-y-1/2 left-6 text-neutral-500' />

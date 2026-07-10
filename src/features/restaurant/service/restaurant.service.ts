@@ -4,6 +4,7 @@ import {
   RecommendedRestaurantData,
   RestaurantDetail,
   RestaurantListData,
+  SearchRestaurantParams,
 } from '../types';
 import { ApiResponse } from '@/types/api.type';
 
@@ -29,5 +30,13 @@ export const getAllRestaurantList = async (params: GetRestaurantsParams) => {
   const { data } = await api.get<ApiResponse<RestaurantListData>>('/resto', {
     params: cleanParams,
   });
+  return data;
+};
+
+export const searchRestaurant = async (params: SearchRestaurantParams) => {
+  const { data } = await api.get<ApiResponse<RestaurantListData>>(
+    '/resto/search',
+    { params }
+  );
   return data;
 };
