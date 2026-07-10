@@ -15,3 +15,10 @@ export type ProfileData = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type UpdateProfileBody = {
+  name?: string;
+  email?: string;
+  phone?: string;
+  avatar?: File;
+};

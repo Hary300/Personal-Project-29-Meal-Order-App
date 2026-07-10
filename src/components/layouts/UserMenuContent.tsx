@@ -1,3 +1,4 @@
+'use client';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,27 +7,32 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
-import avatar from '@/assets/icons/avatar-icon.svg';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { authStore } from '@/features/auth/store/auth-store';
 import Link from 'next/link';
+import { useProfile } from '@/features/profile/hook/useProfile';
+import { ImageOff } from 'lucide-react';
+import Avatar from '../shared/Avatar';
 
 const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
+  const { data } = useProfile();
   const user = authStore((state) => state.user);
   const router = useRouter();
   const logout = authStore((state) => state.logout);
+
   const handleLogoutClick = () => {
     router.push('/auth');
     toast.success('Logout successfully');
     logout();
   };
 
+  const avatar = data?.data.avatar;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className='flex items-center gap-4 cursor-pointer'>
-          <Image src={avatar} alt='avatar' loading='eager' />
+          <Avatar avatar={avatar} size='sm' />
           <p
             className={`hidden md:block font-semibold leading-lg lg:text-lg ${useLightNavbar ? '' : 'text-white'}`}
           >
@@ -35,17 +41,17 @@ const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='flex flex-col gap-3 p-4'>
-        <DropdownMenuItem>
-          <div
+        <DropdownMenuItem asChild>
+          <Link
+            href={'/profile'}
             className='flex items-center gap-4 cursor-pointer'
-            onClick={() => router.push('/profile')}
           >
-            <Image src={avatar} alt='avatar' loading='eager' />
+            <Avatar avatar={avatar} size='sm' />
             <p className={`font-bold leading-md text-md`}>{user?.name}</p>
-          </div>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <Link
             href={'/profile?page=address'}
             className='cursor-pointer flex gap-2'
@@ -72,10 +78,10 @@ const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
                 strokeLinejoin='round'
               />
             </svg>
-            <span className='font-medium text-sm '>Delivery Address</span>
+            <span className='font-medium text-sm'>Delivery Address</span>
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <Link
             href={'/profile?page=orders'}
             className='cursor-pointer flex gap-2'

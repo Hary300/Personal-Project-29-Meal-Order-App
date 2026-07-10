@@ -6,6 +6,8 @@ import { authStore } from '@/features/auth/store/auth-store';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import { useProfile } from '@/features/profile/hook/useProfile';
+import Avatar from '../shared/Avatar';
 
 const ProfileSideBar = ({
   name,
@@ -14,6 +16,7 @@ const ProfileSideBar = ({
   name: string;
   className?: string;
 }) => {
+  const { data } = useProfile();
   const logout = authStore((state) => state.logout);
   const router = useRouter();
 
@@ -22,6 +25,8 @@ const ProfileSideBar = ({
     router.push('/auth?tab=signIn');
     toast.success('Logout successfully');
   };
+
+  const avatar = data?.data.avatar;
   return (
     <section
       id='profile-sidebar
@@ -35,7 +40,7 @@ const ProfileSideBar = ({
         href={'/profile'}
         className='flex items-center gap-4 cursor-pointer hover:text-danger'
       >
-        <Image src={avatar} alt='avatar' loading='eager' />
+        <Avatar avatar={avatar} size='md' />
         <p className={`hidden md:block font-semibold leading-lg lg:text-lg `}>
           {name}
         </p>

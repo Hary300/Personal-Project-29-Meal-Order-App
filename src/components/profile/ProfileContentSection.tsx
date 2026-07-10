@@ -1,9 +1,10 @@
-import Image from 'next/image';
-import avatar from '@/assets/icons/avatar-icon.svg';
-import { Button } from '../ui/button';
 import { ProfileData } from '@/features/profile/types';
+import UpdateProfile from './UpdateProfile';
+import Avatar from '../shared/Avatar';
 
 const ProfileContent = ({ profileData }: { profileData: ProfileData }) => {
+  const avatar = profileData.avatar;
+
   const profileContent = [
     {
       id: 1,
@@ -31,14 +32,7 @@ const ProfileContent = ({ profileData }: { profileData: ProfileData }) => {
         Profile
       </h1>
       <div className='flex flex-col gap-6 rounded-2xl p-4 w-full lg:max-w-131 bg-white shadow-[0_0_20px_0_#CBCACA40]'>
-        <div className='relative size-[64px]'>
-          <Image
-            src={avatar}
-            alt='avatar'
-            fill
-            className='object-cover object-center'
-          />
-        </div>
+        <Avatar avatar={avatar} size='lg' />
         {profileContent.map((item) => (
           <div key={item.id} className='flex justify-between'>
             <p className='font-medium text-sm lg:text-md'>{item.title}</p>
@@ -46,7 +40,7 @@ const ProfileContent = ({ profileData }: { profileData: ProfileData }) => {
           </div>
         ))}
 
-        <Button>Update Profile</Button>
+        <UpdateProfile />
       </div>
     </section>
   );
