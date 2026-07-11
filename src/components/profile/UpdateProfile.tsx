@@ -49,8 +49,7 @@ const UpdateProfile = () => {
 
   const onSubmit = (data: UpdateProfileBody) => {
     if (!isDirty) return;
-    console.log(data);
-    console.log(data.avatar);
+
     mutate(data, {
       onSuccess: () => {
         setOpen(false);

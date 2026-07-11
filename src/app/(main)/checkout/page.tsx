@@ -30,7 +30,7 @@ const CheckoutPage = () => {
   const { mutate: deleteAllItems } = useDeleteAllItemsCart();
   const { mutate } = useAddOrderCheckout();
 
-  const methods = useForm<CheckoutForm>({
+  const form = useForm<CheckoutForm>({
     defaultValues: {
       deliveryAddress: '',
       phone: '',
@@ -47,12 +47,12 @@ const CheckoutPage = () => {
 
     const data: SavedAddress = JSON.parse(saved);
 
-    methods.reset({
-      ...methods.getValues(),
+    form.reset({
+      ...form.getValues(),
       deliveryAddress: data.deliveryAddress,
       phone: data.phone,
     });
-  }, [methods]);
+  }, [form]);
 
   if (isLoading) return <Loading />;
   if (error) return <p>{error.message}</p>;
@@ -81,10 +81,10 @@ const CheckoutPage = () => {
         </h1>
       </div>
 
-      <FormProvider {...methods}>
+      <FormProvider {...form}>
         <form
           className='flex flex-col gap-4 lg:flex-row lg:gap-5  max-w-250 mx-auto w-full'
-          onSubmit={methods.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className='flex flex-col gap-4 lg:gap-5 w-full'>
             <DeliveryAddressSection />

@@ -1,18 +1,17 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-import ReviewDialogBody from './ReviewDialogBody';
+import ReviewDialogBody from '../../shared/ReviewDialogBody';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  ReviewBody,
-  reviewSchema,
+  CreateReviewBody,
+  createReviewSchema,
 } from '@/features/review/schema/reviewSchema';
 import { useCreateNewReview } from '@/features/review/hook/useReview';
-import { toast } from 'sonner';
 
-type GiveReviewButton = {
+type GiveReviewButtonProps = {
   transactionId: string;
   restaurantId: number;
   menuIds: number[];
@@ -22,11 +21,11 @@ const GiveReviewButton = ({
   transactionId,
   restaurantId,
   menuIds,
-}: GiveReviewButton) => {
+}: GiveReviewButtonProps) => {
   const [open, setOpen] = useState(false);
   const { mutate } = useCreateNewReview();
 
-  const form = useForm<ReviewBody>({
+  const form = useForm<CreateReviewBody>({
     defaultValues: {
       transactionId,
       restaurantId,
@@ -34,20 +33,20 @@ const GiveReviewButton = ({
       comment: '',
       menuIds,
     },
-    resolver: zodResolver(reviewSchema),
+    resolver: zodResolver(createReviewSchema),
   });
 
-  const onSubmit = (data: ReviewBody) => {
-    console.log('submit');
-    console.log(data);
+  const rating = useWatch({
+    control: form.control,
+    name: 'star',
+  });
 
+  const onSubmit = (data: CreateReviewBody) => {
     mutate(data, {
-      onSuccess: () => {
-        setOpen(false);
-        toast.success('Review posted successfully');
-      },
+      onSuccess: () => setOpen(false),
     });
   };
+
   return (
     <div className='w-full lg:max-w-60'>
       <Dialog
@@ -63,7 +62,17 @@ const GiveReviewButton = ({
           <Button type='button'>Give Review</Button>
         </DialogTrigger>
 
-        <ReviewDialogBody form={form} onSubmit={form.handleSubmit(onSubmit)} />
+        <ReviewDialogBody
+          rating={rating}
+          register={form.register}
+          onRatingChange={(rating: number) => {
+            form.setValue('star', rating + 1, {
+              shouldValidate: true,
+              shouldDirty: true,
+            });
+          }}
+          onSubmit={form.handleSubmit(onSubmit)}
+        />
       </Dialog>
     </div>
   );

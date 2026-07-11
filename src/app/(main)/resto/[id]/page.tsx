@@ -24,6 +24,10 @@ const RestaurantDetailPage = () => {
   }
 
   const restaurantDetail = detailResponse.data;
+  const reviewContext = {
+    reviews: restaurantDetail.reviews,
+    restaurantId: restaurantDetail.id,
+  };
 
   return (
     <div className='px-4 lg:px-30'>
@@ -32,7 +36,7 @@ const RestaurantDetailPage = () => {
       <div className='h-0.5 w-full bg-neutral-300' />
       <MenuSection restaurantDetail={restaurantDetail} />
       <div className='h-0.5 w-full bg-neutral-300' />
-      <ReviewSection reviews={restaurantDetail.reviews} />
+      <ReviewSection reviewContext={reviewContext} />
     </div>
   );
 };

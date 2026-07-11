@@ -13,7 +13,6 @@ const HomeHeroSection = () => {
   const { register, handleSubmit } = useForm<SearchForm>();
 
   const onSubmit = (query: SearchForm) => {
-    console.log(query);
     router.push(`/search?q=${query.search}`);
   };
 

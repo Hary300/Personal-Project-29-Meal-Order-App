@@ -17,7 +17,6 @@ const Price = () => {
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return;
-    console.log('submit');
 
     const params = new URLSearchParams(searchParams.toString());
 

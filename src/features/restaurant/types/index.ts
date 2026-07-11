@@ -21,7 +21,7 @@ export type ReviewUser = {
   avatar: string | null;
 };
 
-export type Review = {
+export type RestaurantReview = {
   id: number;
   star: number;
   comment: string | null;
@@ -125,7 +125,7 @@ export type RestaurantDetail = {
   totalMenus: number;
   totalReviews: number;
   menus: Menu[];
-  reviews: Review[];
+  reviews: RestaurantReview[];
 };
 
 /**=============

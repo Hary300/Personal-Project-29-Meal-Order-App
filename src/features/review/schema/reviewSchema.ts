@@ -1,11 +1,15 @@
 import { z } from 'zod';
 
-export const reviewSchema = z.object({
-  transactionId: z.string(),
-  restaurantId: z.number(),
+export const reviewFormSchema = z.object({
   star: z.number().min(1).max(5),
   comment: z.string(),
+});
+
+export const createReviewSchema = reviewFormSchema.extend({
+  transactionId: z.string(),
+  restaurantId: z.number(),
   menuIds: z.array(z.number()),
 });
 
-export type ReviewBody = z.infer<typeof reviewSchema>;
+export type ReviewFormBody = z.infer<typeof reviewFormSchema>;
+export type CreateReviewBody = z.infer<typeof createReviewSchema>;

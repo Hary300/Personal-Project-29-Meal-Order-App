@@ -9,26 +9,22 @@ import { Field, FieldGroup } from '@/components/ui/field';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Star } from 'lucide-react';
-import { UseFormReturn } from 'react-hook-form';
-import { ReviewBody } from '@/features/review/schema/reviewSchema';
+import { UseFormRegister } from 'react-hook-form';
+import { ReviewFormBody } from '@/features/review/schema/reviewSchema';
 
 type ReviewDialogBodyProps = {
-  form: UseFormReturn<ReviewBody>;
-  onSubmit: () => void;
+  rating: number;
+  register: UseFormRegister<ReviewFormBody>;
+  onRatingChange: (rating: number) => void;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
-const ReviewDialogBody = ({ form, onSubmit }: ReviewDialogBodyProps) => {
-  const { register, watch, setValue } = form;
-
-  const rating = watch('star');
-
-  const handleRatingClick = (index: number) => {
-    setValue('star', index + 1, {
-      shouldValidate: true,
-      shouldDirty: true,
-    });
-  };
-
+const ReviewDialogBody = ({
+  rating,
+  register,
+  onRatingChange,
+  onSubmit,
+}: ReviewDialogBodyProps) => {
   return (
     <DialogContent className='sm:max-w-100'>
       <form onSubmit={onSubmit}>
@@ -47,7 +43,7 @@ const ReviewDialogBody = ({ form, onSubmit }: ReviewDialogBodyProps) => {
                       ? 'fill-[#FFAB0D] text-[#FFAB0D]'
                       : 'fill-neutral-400 text-neutral-400'
                   }`}
-                  onClick={() => handleRatingClick(index)}
+                  onClick={() => onRatingChange(index)}
                 />
               ))}
             </div>
@@ -61,9 +57,7 @@ const ReviewDialogBody = ({ form, onSubmit }: ReviewDialogBodyProps) => {
           </Field>
         </FieldGroup>
         <DialogFooter>
-          <Button type='submit' onClick={() => console.log('clicked')}>
-            Send
-          </Button>
+          <Button type='submit'>Send</Button>
         </DialogFooter>
       </form>
     </DialogContent>

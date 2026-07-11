@@ -1,3 +1,5 @@
+import { Pagination } from '@/features/restaurant/types';
+
 export type TransactionStatus =
   | 'preparing'
   | 'on_the_way'
@@ -35,13 +37,6 @@ export type OrderRestaurant = {
 
 export type OrderFilter = {
   status: TransactionStatus;
-};
-
-export type Pagination = {
-  page: number;
-  limit: number;
-  total: number;
-  totalPages: number;
 };
 
 export type Order = {
