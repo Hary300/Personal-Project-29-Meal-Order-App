@@ -10,7 +10,6 @@ type Tab = 'signIn' | 'signUp';
 const AuthPageClient = () => {
   const searchParams = useSearchParams();
   const tabParam = searchParams.get('tab');
-
   const tab: Tab = tabParam === 'signUp' ? 'signUp' : 'signIn';
 
   return (
