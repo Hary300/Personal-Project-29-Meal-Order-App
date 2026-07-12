@@ -12,7 +12,9 @@ const AuthTabs = ({ value }: AuthTabsProps) => {
   return (
     <Tabs
       value={value}
-      onValueChange={(value) => router.replace(`/auth?tab=${value}`)}
+      onValueChange={(tab) =>
+        router.replace(`/auth?tab=${tab}`, { scroll: false })
+      }
       className='w-full'
     >
       <TabsList className='w-full p-md'>
