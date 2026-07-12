@@ -22,14 +22,19 @@ const CategoryContent = () => {
       ? Number(searchParams.get('rating'))
       : undefined,
     category: searchParams.get('category') ?? undefined,
-    page: searchParams.get('page') ? Number(searchParams.get('page')) : undefined,
-    limit: searchParams.get('limit') ? Number(searchParams.get('limit')) : undefined,
+    page: searchParams.get('page')
+      ? Number(searchParams.get('page'))
+      : undefined,
+    limit: 4,
   };
 
   const {
-    data: restaurantsResponse,
+    data: allRestaurantsResponse,
     isLoading,
     error,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
   } = useGetAllRestaurantList(query);
 
   if (isLoading)
@@ -38,11 +43,23 @@ const CategoryContent = () => {
         <Loading />
       </div>
     );
+
   if (error) return <p>{error.message}</p>;
-  const restaurants = restaurantsResponse?.data.restaurants;
+  const restaurants =
+    allRestaurantsResponse?.pages.flatMap((page) => page.data.restaurants) ??
+    [];
   return (
     <div className='w-full'>
-      {restaurants ? <CategoryGrid restaurants={restaurants} /> : <EmptyData />}
+      {restaurants ? (
+        <CategoryGrid
+          restaurants={restaurants}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+      ) : (
+        <EmptyData />
+      )}
     </div>
   );
 };

@@ -31,7 +31,7 @@ const Distance = ({ onSelect }: DistanceProps) => {
 
             params.set('filter', value);
 
-            router.push(`/category?${params.toString()}`, { scroll: false });
+            router.push(`/resto?${params.toString()}`, { scroll: false });
           }, 200);
         }}
       >

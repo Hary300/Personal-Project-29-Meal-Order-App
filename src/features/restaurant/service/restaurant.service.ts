@@ -8,7 +8,7 @@ import {
 } from '../types';
 import { ApiResponse } from '@/types/api.type';
 
-export const getRecommendedRestaurant = async () => {
+export const getRecommendedRestaurants = async () => {
   const { data } =
     await api.get<ApiResponse<RecommendedRestaurantData>>('/resto/recommended');
   return data;

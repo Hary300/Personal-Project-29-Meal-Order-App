@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 const SeeAll = () => {
   const router = useRouter();
   const handleSeeAllClick = () => {
-    router.push('/category');
+    router.push('/recommended');
   };
   return (
     <p

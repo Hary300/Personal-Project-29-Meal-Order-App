@@ -17,7 +17,7 @@ const CategorySection = () => {
       params.delete('filter');
     }
 
-    router.push(`/category?${params.toString()}`);
+    router.push(`/resto?${params.toString()}`);
   };
   return (
     <section

@@ -32,7 +32,7 @@ const Price = () => {
       params.delete('maxPrice');
     }
 
-    router.push(`/category?${params.toString()}`, { scroll: false });
+    router.push(`/resto?${params.toString()}`, { scroll: false });
   };
 
   const dataInputs: DataInputs[] = [

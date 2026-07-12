@@ -6,6 +6,7 @@ import UserMenuContent from './UserMenuContent';
 import { Button } from '../ui/button';
 import { authStore } from '@/features/auth/store/auth-store';
 import { useGetItemsCart } from '@/features/cart/hook/useCart';
+import NavbarSkeleton from './NavbarSkeleton';
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -32,7 +33,7 @@ const Navbar = () => {
   const useLightNavbar = !isHomePage || isScrolled;
 
   if (!hasHydrated) {
-    return null;
+    return <NavbarSkeleton />;
   }
 
   const handleSignInClick = () => {

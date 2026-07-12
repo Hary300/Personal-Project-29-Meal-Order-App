@@ -24,7 +24,7 @@ const Rating = ({ onSelect }: RatingProps) => {
 
             params.set('star', value);
 
-            router.push(`/category?${params.toString()}`, { scroll: false });
+            router.push(`/resto?${params.toString()}`, { scroll: false });
           }, 200);
         }}
       >

@@ -6,7 +6,6 @@ import ReviewSection from '@/components/detail/ReviewSection';
 import { useRestaurantDetail } from '@/features/restaurant/hook/useRestaurantDetail';
 import Loading from '@/components/shared/Loading';
 import { useParams } from 'next/navigation';
-import { useGetAllReviewsRestaurant } from '@/features/review/hook/useReview';
 
 const RestaurantDetailPage = () => {
   const { id } = useParams();
@@ -25,10 +24,6 @@ const RestaurantDetailPage = () => {
   }
 
   const restaurantDetail = detailResponse.data;
-  const reviewContext = {
-    reviews: restaurantDetail.reviews,
-    restaurantId: restaurantDetail.id,
-  };
 
   return (
     <div className='px-4 lg:px-30'>

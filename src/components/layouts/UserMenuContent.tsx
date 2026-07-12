@@ -12,6 +12,7 @@ import { authStore } from '@/features/auth/store/auth-store';
 import Link from 'next/link';
 import { useProfile } from '@/features/profile/hook/useProfile';
 import Avatar from '../shared/Avatar';
+import { Skeleton } from '../ui/skeleton';
 
 const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
   const { data } = useProfile();
@@ -30,7 +31,11 @@ const UserMenuContent = ({ useLightNavbar }: { useLightNavbar: boolean }) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className='flex items-center gap-4 cursor-pointer'>
-          <Avatar avatar={avatar} size='sm' />
+          {!avatar ? (
+            <Skeleton className='w-10.5 h-10.5 aspect-square shrink-0 rounded-full bg-neutral-200' />
+          ) : (
+            <Avatar avatar={avatar} size='sm' />
+          )}
           <p
             className={`hidden md:block font-semibold leading-lg lg:text-lg ${useLightNavbar ? '' : 'text-white'}`}
           >

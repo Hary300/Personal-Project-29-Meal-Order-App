@@ -1,5 +1,5 @@
 'use client';
-import { useRecommendedRestaurant } from '@/features/restaurant/hook/useRecommendedRestaurant';
+import { useRecommendedRestaurants } from '@/features/restaurant/hook/useRecommendedRestaurant';
 import RestaurantCard from '../shared/RestaurantCard';
 import SeeAll from './SeeAll';
 
@@ -8,7 +8,7 @@ const RecommendedSection = () => {
     data: recommendedResponse,
     isLoading,
     error,
-  } = useRecommendedRestaurant();
+  } = useRecommendedRestaurants();
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
