@@ -3,14 +3,25 @@ import authImage from '@/assets/images/auth-image.png';
 import Logo from '@/components/shared/Logo';
 import AuthTabs from '@/features/auth/components/AuthTabs';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 type Tab = 'signIn' | 'signUp';
 
 const AuthPageClient = () => {
   const searchParams = useSearchParams();
-  const tabParam = searchParams.get('tab');
-  const tab: Tab = tabParam === 'signUp' ? 'signUp' : 'signIn';
+  const router = useRouter();
+
+  const [tab, setTab] = useState<Tab>(
+    searchParams.get('tab') === 'signUp' ? 'signUp' : 'signIn'
+  );
+
+  const handleTabChange = (newTab: Tab) => {
+    setTab(newTab);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', newTab);
+    router.replace(`/auth?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <div className='flex'>
@@ -33,7 +44,7 @@ const AuthPageClient = () => {
           <p className='font-medium text-sm lg:text-md'>
             Good to see you again! Let’s eat
           </p>
-          <AuthTabs value={tab} />
+          <AuthTabs value={tab} onValueChange={handleTabChange} />
         </div>
       </div>
     </div>

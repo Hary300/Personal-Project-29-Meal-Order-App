@@ -2,20 +2,17 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import { useRouter } from 'next/navigation';
 
 type AuthTabsProps = {
   value: 'signIn' | 'signUp';
+  onValueChange: (tab: 'signIn' | 'signUp') => void;
 };
 
-const AuthTabs = ({ value }: AuthTabsProps) => {
-  const router = useRouter();
+const AuthTabs = ({ value, onValueChange }: AuthTabsProps) => {
   return (
     <Tabs
       value={value}
-      onValueChange={(tab) =>
-        router.replace(`/auth?tab=${tab}`, { scroll: false })
-      }
+      onValueChange={(val) => onValueChange(val as 'signIn' | 'signUp')}
       className='w-full'
     >
       <TabsList className='w-full p-md'>
