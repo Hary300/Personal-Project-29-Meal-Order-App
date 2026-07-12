@@ -36,7 +36,6 @@ const NearbyRestaurantsContent = () => {
   if (error) return <p>{error.message}</p>;
 
   const restaurants = nearbyRestaurantsResponse?.data.restaurants ?? [];
-  console.log('Nearby');
   return (
     <div className='w-full'>
       {restaurants.length > 0 ? (

@@ -4,10 +4,10 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 type DistanceProps = {
-  onSelect?: () => void;
+  onClick?: () => void;
 };
 
-const Distance = ({ onSelect }: DistanceProps) => {
+const Distance = ({ onClick }: DistanceProps) => {
   const searchParams = useSearchParams();
   const distance = searchParams.get('distance') ?? '';
   const router = useRouter();
@@ -25,7 +25,6 @@ const Distance = ({ onSelect }: DistanceProps) => {
       <RadioGroup
         value={distance}
         onValueChange={(value) => {
-          onSelect?.();
           setTimeout(() => {
             const params = new URLSearchParams(searchParams.toString());
 
@@ -36,7 +35,11 @@ const Distance = ({ onSelect }: DistanceProps) => {
         }}
       >
         {distances.map((item) => (
-          <div key={item.label} className='flex items-center gap-3'>
+          <div
+            key={item.label}
+            className='flex items-center gap-3'
+            onClick={onClick}
+          >
             <RadioGroupItem
               value={item.value}
               id={item.value}

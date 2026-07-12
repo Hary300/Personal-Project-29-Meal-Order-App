@@ -42,7 +42,6 @@ const AllRestaurantsContent = () => {
   const restaurants =
     allRestaurantsResponse?.pages.flatMap((page) => page.data.restaurants) ??
     [];
-  console.log('All restaurant');
   return (
     <div className='w-full'>
       {restaurants.length > 0 ? (

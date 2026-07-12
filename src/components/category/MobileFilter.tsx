@@ -12,6 +12,7 @@ import Distance from './Distance';
 import Price from './Price';
 import Rating from './Rating';
 import { useState } from 'react';
+import ClearFilter from './ClearFilter';
 
 const MobileFilter = () => {
   const [open, setOpen] = useState(false);
@@ -34,13 +35,14 @@ const MobileFilter = () => {
         </SheetTrigger>
         <SheetContent side='left'>
           <SheetHeader>
-            <SheetTitle className='font-bold lg:font-extrabold text-md'>
-              Filter
+            <SheetTitle className='flex justify-between'>
+              <p className='font-bold lg:font-extrabold text-md'>Filter</p>
+              <ClearFilter />
             </SheetTitle>
             <div className='flex flex-col gap-3 lg:gap-6 divide-y'>
-              <Distance onSelect={() => setOpen(false)} />
-              <Price />
-              <Rating onSelect={() => setOpen(false)} />
+              <Distance onClick={() => setOpen(false)} />
+              <Price onEnter={() => setOpen(false)} />
+              <Rating onClick={() => setOpen(false)} />
             </div>
           </SheetHeader>
         </SheetContent>

@@ -5,12 +5,12 @@ import { Label } from '../ui/label';
 import { Star } from 'lucide-react';
 
 type RatingProps = {
-  onSelect?: () => void;
+  onClick?: () => void;
 };
 
-const Rating = ({ onSelect }: RatingProps) => {
+const Rating = ({ onClick }: RatingProps) => {
   const searchParams = useSearchParams();
-  const rating = searchParams.get('star');
+  const rating = searchParams.get('rating');
   const router = useRouter();
   return (
     <div className='flex flex-col gap-2.5 pb-3 lg:pb-6'>
@@ -18,11 +18,10 @@ const Rating = ({ onSelect }: RatingProps) => {
       <RadioGroup
         value={rating}
         onValueChange={(value) => {
-          onSelect?.();
           setTimeout(() => {
             const params = new URLSearchParams(searchParams.toString());
 
-            params.set('star', value);
+            params.set('rating', value);
 
             router.push(`/resto?${params.toString()}`, { scroll: false });
           }, 200);
@@ -31,13 +30,20 @@ const Rating = ({ onSelect }: RatingProps) => {
         {Array.from({ length: 5 }).map((_, index) => {
           const value = 5 - index;
           return (
-            <div key={index} className='flex items-center gap-3 '>
+            <div
+              key={index}
+              className='flex items-center gap-3'
+              onClick={onClick}
+            >
               <RadioGroupItem
                 value={String(value)}
                 id={String(value)}
                 variant='checkbox'
               />
-              <Label htmlFor={String(value)} className='cursor-pointer w-full'>
+              <Label
+                htmlFor={String(value)}
+                className=' w-full  cursor-pointer '
+              >
                 <Star className='text-[#FFAB0D] fill-[#FFAB0D] size-6' />
                 <p>{value}</p>
               </Label>

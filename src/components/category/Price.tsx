@@ -4,40 +4,45 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 type DataInputs = {
   id: number;
-  name: 'minPrice' | 'maxPrice';
+  name: 'priceMin' | 'priceMax';
   placeholder: string;
 };
 
-const Price = () => {
+type PriceProps = {
+  onEnter?: () => void;
+};
+
+const Price = ({ onEnter }: PriceProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [minPrice, setMinPrice] = useState(searchParams.get('minPrice') ?? '');
+  const [minPrice, setMinPrice] = useState(searchParams.get('priceMin') ?? '');
 
-  const [maxPrice, setMaxPrice] = useState(searchParams.get('maxPrice') ?? '');
+  const [maxPrice, setMaxPrice] = useState(searchParams.get('priceMax') ?? '');
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return;
+    onEnter?.();
 
     const params = new URLSearchParams(searchParams.toString());
 
     if (minPrice) {
-      params.set('minPrice', minPrice);
+      params.set('priceMin', minPrice);
     } else {
-      params.delete('minPrice');
+      params.delete('priceMin');
     }
 
     if (maxPrice) {
-      params.set('maxPrice', maxPrice);
+      params.set('priceMax', maxPrice);
     } else {
-      params.delete('maxPrice');
+      params.delete('priceMax');
     }
 
     router.push(`/resto?${params.toString()}`, { scroll: false });
   };
 
   const dataInputs: DataInputs[] = [
-    { id: 1, name: 'minPrice', placeholder: 'Minimum Price' },
-    { id: 2, name: 'maxPrice', placeholder: 'Maximum Price' },
+    { id: 1, name: 'priceMin', placeholder: 'Minimum Price' },
+    { id: 2, name: 'priceMax', placeholder: 'Maximum Price' },
   ];
   return (
     <div className='flex flex-col gap-2.5 pb-3 lg:pb-6'>
@@ -51,10 +56,10 @@ const Price = () => {
 
             <input
               type='number'
-              value={input.name === 'minPrice' ? minPrice : maxPrice}
+              value={input.name === 'priceMin' ? minPrice : maxPrice}
               placeholder={input.placeholder}
               onChange={(e) => {
-                if (input.name === 'minPrice') {
+                if (input.name === 'priceMin') {
                   setMinPrice(e.target.value);
                 } else {
                   setMaxPrice(e.target.value);

@@ -30,7 +30,6 @@ const BestSellerRestaurants = () => {
     bestSellerRestaurantsResponse?.pages.flatMap(
       (page) => page.data.restaurants
     ) ?? [];
-  console.log('Best seller');
   return (
     <div className='w-full'>
       {restaurants.length > 0 ? (
